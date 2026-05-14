@@ -120,9 +120,9 @@ export function Hero() {
               <div className="absolute inset-0 bg-gradient-to-br from-brand-3 via-brand-4 to-brand-5" />
               <div className="relative w-full h-full rounded-full overflow-hidden">
                 <img
-                  src="https://res.cloudinary.com/harsh21/image/upload/v1778741787/image_db4crv.png"
+                  src="https://res.cloudinary.com/harsh21/image/upload/v1778748890/Screenshot_1_dh0qt3.png"
                   alt="Harsh Jain"
-                  className="w-full h-full object-cover rounded-full relative z-10"
+                  className="w-full h-90 object-cover rounded-full relative z-10"
                 />
 
                 {/* Overlay */}
