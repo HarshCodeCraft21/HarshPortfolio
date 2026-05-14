@@ -10,7 +10,7 @@ export function Footer() {
             Harsh Jain<span className="text-primary">.</span>
           </div>
           <p className="text-sm text-muted-foreground mt-1 flex items-center justify-center md:justify-start gap-1.5">
-            Designed & Developed by Harsh Jain <Heart className="w-3.5 h-3.5 text-primary fill-primary" />
+            A fullStack Developer <Heart className="w-3.5 h-3.5 text-primary fill-primary" />
           </p>
         </div>
         <div className="flex items-center gap-3">

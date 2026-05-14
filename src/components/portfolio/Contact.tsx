@@ -4,7 +4,6 @@ import { z } from "zod";
 import { Mail, Phone, Github, Linkedin, Send, MapPin } from "lucide-react";
 import { toast } from "sonner";
 import { PROFILE } from "@/data/portfolio";
-import { supabase } from "@/integrations/supabase/client";
 
 const schema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -13,34 +12,77 @@ const schema = z.object({
 });
 
 export function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = async (e: React.FormEvent) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
     const parsed = schema.safeParse(form);
+
     if (!parsed.success) {
       toast.error(parsed.error.errors[0].message);
       return;
     }
+
     setLoading(true);
-    try {
-      const { error } = await supabase.from("contact_messages").insert([parsed.data as { name: string; email: string; message: string }]);
-      if (error) throw error;
-      toast.success("Message sent! I'll get back to you soon.");
-      setForm({ name: "", email: "", message: "" });
-    } catch (err) {
-      toast.error("Couldn't send. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+
+    const { name, email, message } = form;
+    const phone = "917737694558";
+    const text = `
+Hi, I'm ${name}
+
+Email: ${email}
+
+Message:
+${message}
+    `;
+
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+
+    window.open(url, "_blank");
+
+    toast.success("Redirecting to WhatsApp...");
+
+    setForm({
+      name: "",
+      email: "",
+      message: "",
+    });
+
+    setLoading(false);
   };
 
   const contacts = [
-    { Icon: Mail, label: "Email", value: PROFILE.email, href: `mailto:${PROFILE.email}` },
-    { Icon: Phone, label: "Phone", value: PROFILE.phone, href: `tel:${PROFILE.phone.replace(/\s/g, "")}` },
-    { Icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/harshjain", href: PROFILE.linkedin },
-    { Icon: Github, label: "GitHub", value: "github.com/harshjain", href: PROFILE.github },
+    {
+      Icon: Mail,
+      label: "Email",
+      value: PROFILE.email,
+      href: `mailto:${PROFILE.email}`,
+    },
+    {
+      Icon: Phone,
+      label: "Phone",
+      value: PROFILE.phone,
+      href: `tel:${PROFILE.phone.replace(/\s/g, "")}`,
+    },
+    {
+      Icon: Linkedin,
+      label: "LinkedIn",
+      value: "linkedin.com/in/harshjain",
+      href: PROFILE.linkedin,
+    },
+    {
+      Icon: Github,
+      label: "GitHub",
+      value: "github.com/harshjain",
+      href: PROFILE.github,
+    },
   ];
 
   return (
@@ -54,7 +96,8 @@ export function Contact() {
         <span className="section-eyebrow">Contact</span>
         <h2 className="section-title">Let's build something together</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Have a project in mind, a role to fill, or just want to say hi? I'd love to hear from you.
+          Have a project in mind, a role to fill, or just want to say hi? I'd
+          love to hear from you.
         </p>
       </motion.div>
 
@@ -82,7 +125,9 @@ export function Contact() {
                   <Icon className="w-5 h-5" />
                 </span>
                 <div className="min-w-0">
-                  <div className="text-[11px] font-mono text-muted-foreground uppercase tracking-wider">{label}</div>
+                  <div className="text-[11px] font-mono text-muted-foreground uppercase tracking-wider">
+                    {label}
+                  </div>
                   <div className="text-sm font-medium truncate">{value}</div>
                 </div>
               </a>
@@ -98,7 +143,9 @@ export function Contact() {
           className="glass rounded-3xl p-8 space-y-5"
         >
           <div>
-            <label className="text-xs font-mono uppercase tracking-wider text-muted-foreground">Your name</label>
+            <label className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
+              Your name
+            </label>
             <input
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -108,7 +155,9 @@ export function Contact() {
             />
           </div>
           <div>
-            <label className="text-xs font-mono uppercase tracking-wider text-muted-foreground">Email</label>
+            <label className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
+              Email
+            </label>
             <input
               type="email"
               value={form.email}
@@ -119,7 +168,9 @@ export function Contact() {
             />
           </div>
           <div>
-            <label className="text-xs font-mono uppercase tracking-wider text-muted-foreground">Message</label>
+            <label className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
+              Message
+            </label>
             <textarea
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
@@ -128,8 +179,18 @@ export function Contact() {
               maxLength={1000}
             />
           </div>
-          <button type="submit" disabled={loading} className="btn-primary w-full disabled:opacity-60">
-            {loading ? "Sending..." : (<>Send message <Send className="w-4 h-4" /></>)}
+          <button
+            type="submit"
+            disabled={loading}
+            className="btn-primary w-full disabled:opacity-60"
+          >
+            {loading ? (
+              "Sending..."
+            ) : (
+              <>
+                Send message <Send className="w-4 h-4" />
+              </>
+            )}
           </button>
         </motion.form>
       </div>

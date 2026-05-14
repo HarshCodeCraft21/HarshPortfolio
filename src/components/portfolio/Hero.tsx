@@ -70,7 +70,7 @@ export function Hero() {
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
-            <button onClick={() => go("projects")} className="btn-primary">
+            <button onClick={() => go("projects")} className="btn-primary" style={{ backgroundColor: '#A0715B', color: 'white' }}>
               View Projects <ArrowRight className="w-4 h-4" />
             </button>
             <a href={PROFILE.resume} download className="btn-ghost">

@@ -49,8 +49,8 @@ export function Navbar() {
         scrolled ? "glass rounded-full" : ""
       }`}>
         <div className="flex items-center justify-between h-12">
-          <button onClick={() => go("home")} className="font-serif text-xl font-semibold text-foreground">
-            Harsh<span className="text-primary">.</span>
+          <button onClick={() => go("home")} className="font-serif text-4xl font-semibold text-foreground">
+            Portfolio<span className="text-primary">.</span>
           </button>
           <div className="hidden md:flex items-center gap-8">
             {LINKS.map((l) => (
