@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { GraduationCap, Sparkles, Code2 } from "lucide-react";
 import { EDUCATION } from "@/data/portfolio";
+import { GithubStats } from "./GithubStats";
 
 const reveal = {
   hidden: { opacity: 0, y: 30 },
@@ -82,6 +83,8 @@ export function About() {
           </div>
         </motion.div>
       </div>
+
+      <GithubStats />
     </section>
   );
 }
