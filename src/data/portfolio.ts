@@ -37,7 +37,17 @@ export const PROJECTS = [
       "A full-stack event management platform with role-based access, authentication, and a fully responsive UI for creating and managing events seamlessly.",
     features: ["Event creation & management", "Authentication system", "Role-based access control", "Responsive UI"],
     stack: ["React", "Node.js", "Express", "MongoDB", "Tailwind"],
+    image:"https://res.cloudinary.com/harsh21/image/upload/v1778742798/Screenshot_1_jicoaz.png",
     demo: "https://gatherly07.netlify.app/",
     github: "https://github.com/HarshCodeCraft21/gatherly-frontend.git",
   },
+  {
+    title:"MyPortfolio",
+    subtitle:"Portfolio Website",
+    description:"A responsive portfolio website showcasing my skills, projects, and experience.",
+    stack:["React","Tailwind CSS","TypeScript"],
+    image:"https://res.cloudinary.com/harsh21/image/upload/v1778913911/Screenshot_1_pj38se.png",
+    demo:"https://harshportfolio-zctn.onrender.com",
+    github:"https://github.com/HarshCodeCraft21/MyPortfolio.git",
+  }
 ];

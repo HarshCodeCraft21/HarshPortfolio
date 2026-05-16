@@ -1,15 +1,16 @@
 import { motion } from "framer-motion";
-import { Github, ExternalLink, Calendar } from "lucide-react";
+import { Github, ExternalLink } from "lucide-react";
 import { PROJECTS } from "@/data/portfolio";
+import { GithubRepos } from "./GithubRepos";
 
 export function Projects() {
   return (
-    <section id="projects" className="section">
+    <section id="projects" className="section overflow-visible">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        className="text-center mb-14"
+        className="text-center mb-16"
       >
         <span className="section-eyebrow">Projects</span>
         <h2 className="section-title">Things I've built</h2>
@@ -18,7 +19,7 @@ export function Projects() {
         </p>
       </motion.div>
 
-      <div className="grid lg:grid-cols-2 gap-8">
+      <div className="grid lg:grid-cols-2 gap-10 xl:gap-14 mb-32">
         {PROJECTS.map((p, i) => (
           <motion.article
             key={p.title}
@@ -26,58 +27,56 @@ export function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, delay: i * 0.1 }}
-            className="glass rounded-3xl overflow-hidden card-hover group"
+            className="glass rounded-[40px] overflow-hidden group"
           >
             {/* Thumbnail */}
-            <div className="relative h-56 bg-gradient-to-br from-brand-3 via-brand-4 to-brand-5 overflow-hidden">
+            <div className="relative h-72 sm:h-96 bg-gradient-to-br from-brand-3 via-brand-4 to-brand-5 overflow-hidden">
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="font-serif text-5xl text-foreground/40 group-hover:scale-110 transition-transform duration-700">
-                  <img src="https://res.cloudinary.com/harsh21/image/upload/v1778742798/Screenshot_1_jicoaz.png" alt="banner" className="w-full h-full object-cover"/>
+                <div className="w-full h-full group-hover:scale-105 transition-transform duration-1000">
+                  <img 
+                    src={p.image} 
+                    alt={p.title} 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
-              <div className="absolute top-4 left-4 glass rounded-full px-3 py-1 text-[11px] font-mono">
-                <Calendar className="w-3 h-3 inline mr-1" /> 2025
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
 
-            <div className="p-7">
-              <div className="flex items-baseline gap-2 mb-2">
-                <h3 className="text-2xl font-semibold">{p.title}</h3>
-                <span className="text-sm text-muted-foreground">— {p.subtitle}</span>
-              </div>
-              <p className="text-muted-foreground leading-relaxed mb-4">{p.description}</p>
+            <div className="p-10 xl:p-14">
+              <h3 className="text-3xl font-semibold mb-4">{p.title}</h3>
+              <p className="text-muted-foreground leading-relaxed mb-8 text-lg">{p.description}</p>
 
-              <ul className="grid grid-cols-2 gap-1.5 text-sm text-foreground/80 mb-5">
-                {p.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2">
-                    <span className="text-primary mt-1">▸</span> {f}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="flex flex-wrap gap-1.5 mb-5">
+              <div className="flex flex-wrap gap-2.5 mb-10">
                 {p.stack.map((s) => (
                   <span
                     key={s}
-                    className="px-2.5 py-1 text-[11px] font-mono rounded-full bg-brand-3 text-primary border border-brand-5/40"
+                    className="px-4 py-2 text-[12px] font-mono rounded-full bg-brand-3/60 text-primary border border-brand-5/30"
                   >
                     {s}
                   </span>
                 ))}
               </div>
 
-              <div className="flex items-center gap-3">
-                <a href={p.demo} target="_blank" rel="noreferrer" className="btn-primary !py-2 !px-4 !text-sm">
-                  <ExternalLink className="w-4 h-4" /> Live Demo
+              <div className="flex items-center gap-5">
+                <a href={p.demo} target="_blank" rel="noreferrer" className="btn-primary !py-3.5 !px-8 !text-base">
+                  <ExternalLink className="w-5 h-5" /> Live Demo
                 </a>
-                <a href={p.github} target="_blank" rel="noreferrer" className="btn-ghost !py-2 !px-4 !text-sm">
-                  <Github className="w-4 h-4" /> GitHub
+                <a href={p.github} target="_blank" rel="noreferrer" className="btn-ghost !py-3.5 !px-8 !text-base">
+                  <Github className="w-5 h-5" /> GitHub
                 </a>
               </div>
             </div>
           </motion.article>
         ))}
+      </div>
+
+      {/* GitHub Section */}
+      <div className="pt-20 border-t border-brand-5/10">
+        <div className="mb-16 text-center">
+          <h2 className="text-4xl font-semibold mb-4">My Minor Projects</h2>
+          <p className="text-muted-foreground">Some of my minor projects.</p>
+        </div>
+        <GithubRepos />
       </div>
     </section>
   );
