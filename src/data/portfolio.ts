@@ -49,5 +49,14 @@ export const PROJECTS = [
     image:"https://res.cloudinary.com/harsh21/image/upload/v1778913911/Screenshot_1_pj38se.png",
     demo:"https://harshportfolio-zctn.onrender.com",
     github:"https://github.com/HarshCodeCraft21/MyPortfolio.git",
+  },
+  {
+    title:"ShopSphere",
+    Subtitle:"E-Commerce Website",
+    description:"An e-commerce platform with product browsing, cart management, and a responsive UI.",
+    stack:["React","Node.js","Express","MongoDB","Tailwind"],
+    image:"https://res.cloudinary.com/harsh21/image/upload/v1779012710/Screenshot_1_whmgzg.png",
+    demo:"https://basicproject-frontend.onrender.com/",
+    github:"https://github.com/HarshCodeCraft21/basicProject.git",
   }
 ];
