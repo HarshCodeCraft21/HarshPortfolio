@@ -7,7 +7,7 @@ export const PROFILE = {
   location: "India",
   github: "https://github.com/HarshCodeCraft21",
   linkedin: "https://www.linkedin.com/in/harsh-jain-4672422a6/",
-  resume: "https://drive.google.com/file/d/1rqaRCpXV6oOk-7ICYa6qFuxukn9ZGiTs/view?usp=sharing",
+  resume: "https://drive.google.com/file/d/1029eTfyvWu2X1nVE1Sd2FRM0Sq3A2P7Y/view?usp=sharing",
 };
 
 export const TYPING_PHRASES = [
